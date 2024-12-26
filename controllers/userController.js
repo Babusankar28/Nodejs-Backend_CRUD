@@ -2,7 +2,6 @@ const UserModel = require("../models/userModel");
 
 const createUser = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, age } = req.body;
     const user = await UserModel.create({ username, email, age });
     res.status(201).json({ message: "user created successfully", user });
@@ -18,7 +17,7 @@ const getUsers = async (req, res) => {
     const { name } = req.query;
     console.log(name);
 
-    const users = await UserModel.find({ username: name });
+    const users = await UserModel.find();
     res.status(200).json({ message: "user fetcehed successfully", users });
   } catch (err) {
     res.status(500).json({ message: err.message });
